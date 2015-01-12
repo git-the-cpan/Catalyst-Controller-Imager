@@ -1,8 +1,5 @@
 package Catalyst::Helper::Controller::Imager;
-{
-  $Catalyst::Helper::Controller::Imager::VERSION = '0.05';
-}
-
+$Catalyst::Helper::Controller::Imager::VERSION = '0.06';
 use strict;
 
 =head1 NAME
@@ -11,7 +8,7 @@ Catalyst::Helper::Controller::Imager - Helper for Imager Controllers
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 

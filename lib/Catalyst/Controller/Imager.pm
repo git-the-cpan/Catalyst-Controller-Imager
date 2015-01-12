@@ -1,8 +1,5 @@
 package Catalyst::Controller::Imager;
-{
-  $Catalyst::Controller::Imager::VERSION = '0.05';
-}
-
+$Catalyst::Controller::Imager::VERSION = '0.06';
 use Moose;
 use Moose::Util::TypeConstraints;
 # w/o BEGIN, :attrs will not work
@@ -37,7 +34,7 @@ Catalyst::Controller::Imager - generate scaled or mangled images
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -336,6 +333,9 @@ you may build these action methods:
 
 =cut
 
+=head2 BUILD
+=cut
+
 sub BUILD {
     my $self = shift;
     my $c = $self->_app;
@@ -540,7 +540,7 @@ sub end :Action {
     } else {
         my $types = MIME::Types->new();
         my $mime = $types->mimeTypeOf($c->stash->{format});
-        $c->response->headers->content_type($mime || 'image/unknown');
+        $c->response->headers->content_type("$mime" || 'image/unknown');
         $c->response->body($c->stash->{image_data});
     }
 }
@@ -601,7 +601,7 @@ sub scale_fit :Action {
     }
 }
 
-=head2 scale_max :Action
+=head2 scale_fill :Action
 
 scales an image by the minimum scaling factor needed to either match the
 desired width or height. Then, expand the image with white color to make it
